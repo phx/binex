@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export PATH="/usr/local/bin:$PATH"
+
+arg="$1"
+string=$(hex2ascii "$arg")
+result=$(hexorganize "$string")
+echo "$result"

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  shell:
+    build: .
+    volumes:
+      - "${SHARE_DIR:-/}:/share"
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/bash

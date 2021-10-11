@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Python3 program to convert hexadecimal
+# string to ASCII format string
+import os, sys
+
+def hexToASCII(hexx):
+
+	# initialize the ASCII code string as empty.
+	asci = ""
+
+	for i in range(0, len(hexx), 2):
+
+		# extract two characters from hex string
+		part = hexx[i : i + 2]
+
+		# change it into base 16 and
+		# typecast as the character
+		ch = chr(int(part, 16))
+
+		# add this char to final ASCII string
+		asci += ch
+	
+	return asci
+
+# Driver Code
+if __name__ == "__main__":
+    if len(sys.argv[1:]) == 0:
+        print('hextoascii needs an argument')
+        sys.exit()
+    args = ''.join(sys.argv[1:])
+    args = args.replace(' ', '').strip()
+    s = hexToASCII(args).replace('\n', '').strip()
+    print(s)

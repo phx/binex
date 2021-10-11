@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [[ -z $1 ]]; then
+  echo 'vc (vulnerable compile) must be run with at least an input argument.'
+  exit
+fi
+
+if echo "$1" | grep -q '.c'; then
+  INPUT="$1"
+elif echo "$2" | grep -q '.c'; then
+  INPUT="$2"
+  OUTPUT="$1"
+fi
+
+if [[ -z $2 ]]; then
+  OUTPUT="$(echo "$INPUT" | sed 's/.c//')"
+fi
+
+echo "INPUT FILE: $INPUT"
+echo "OUTPUT FILE: $OUTPUT"
+echo
+echo "# gcc $INPUT -o $OUTPUT -fno-stack-protector -z execstack -Wl,-no_pie:"
+gcc "$INPUT" -o "$OUTPUT" -fno-stack-protector -z execstack -Wl,-no_pie
+if [[ $? -ne 0 ]]; then
+  echo
+  echo 'gcc exited with errors.'
+  exit
+fi
+echo
+echo "# ls -lh $OUTPUT:"
+ls -lh "$OUTPUT"
+echo
+
+if command -v checksec >/dev/null 2>&1; then
+  echo "# checksec $OUTPUT:"
+  checksec "$OUTPUT"
+fi

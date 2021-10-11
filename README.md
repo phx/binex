@@ -16,14 +16,14 @@ Scroll down to the bottom for a [probably non-exhaustive] list of all installed 
 
 You will need to specify the path to the directory on the host that you wish to mount to the `/share` directory in the container.
 
-This is the most straightforward way to run `binex`, and I will always try to keep the image up-to-date.
-However, since DockerHub recently made GitHub integration a subscription-only feature, the image will not auto-update on new pushes to the repository.
-I may go with the Pro Plan at some point, but if you want to guarantee you have the most upt-to-date image or you don't want to blindly trust my DockerHub image,
-feel free to use one of the methods below.
-
 #### Updating the image:
 
 `docker pull lphxl/binex:latest`
+
+Running via DockerHub is the most straightforward way to run `binex`, and I will always try to keep the image up-to-date.
+However, since DockerHub recently made GitHub integration a subscription-only feature, the image will not auto-update on new pushes to the repository.
+I may go with the Pro Plan at some point, but if you want to guarantee that you have the most upt-to-date image or you don't want to blindly trust my DockerHub image,
+feel free to read the `Dockerfile` and build it directly using the method below.
 
 ## Build from Dockerfile
 
@@ -46,32 +46,6 @@ Just `cd` back to the binex git repo directory, pull any updates, and rebuild th
 cd binex
 git pull
 docker build -t binex .
-```
-
-## Build using docker-compose:
-
-Copy `env.example` to `.env`, and set the `SHARE_DIR` path to the host directory you want to mount to `/share` in the container:
-
-```
-git clone https://github.com/phx/binex
-cd binex
-cp env.example .env
-docker-compose up -d
-docker exec -it binex_shell_1 /bin/bash
-```
-
-To stop, just run `docker-compose down`
-
-### Updating:
-
-`cd` back to the git repo directory, stash your changes, pull update, and rebuild the image:
-
-```
-cd binex
-git stash
-git pull
-git stash apply
-docker-compose build
 ```
 
 ## Probably incomplete list of scripts, and tools installed:

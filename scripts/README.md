@@ -12,9 +12,12 @@
 
 `hex2ascii` in combination with `hexorganize` function together like a command line variant of the web-based [RapidTables Hex to ASCII Text Converter](https://www.rapidtables.com/convert/number/hex-to-ascii.html).
 
-Let's say you have a hex dump of the following characters:
+Let's say you found a format string vulnerability while running a C program and fed it the following input and got the following output:
 
 ```
+USER INPUT:
+%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x
+PROGRAM OUTPUT:
 8253350804b00080489c3f7f3ed80ffffffff18251160f7f4c110f7f3edc708252180a825333082533506f6369707b465443306c5f49345f74356d5f6c6c306d5f795f79336e3463646261653532ff85007df7f79af8f7f4c4405f1fac0010f7ddbbe9f7f4d0c0f7f3e5c0f7f3e000ff85d678f7dcc58df7f3e5c08048ecaff85d6840f7f60f09804b000f7f3e000f7f3ee20ff85d6b8f7f66d50f7f3f8905f1fac00f7f3e000804b000ff85d6b88048c868251160ff85d6a4ff85d6b88048be9f7f3e3fc0ff85d76cff85d7641182511605f1fac00ff85d6d000f7d81f21f7f3e000f7f3e0000f7d81f211
 ```
 

@@ -97,6 +97,7 @@ pattern_offset.rb (https://raw.githubusercontent.com/rapid7/metasploit-framework
 personal scripts:
 - hex2ascii
 - hexorganize
+- hex2ascii_organize
 - pietest
 - vc
 others tools:

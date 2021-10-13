@@ -12,7 +12,7 @@ Scroll down to the bottom for a [probably non-exhaustive] list of all installed 
 
 ## Pull latest image from DockerHub
 
-`docker run --name binex --rm -itv /path/to/host_folder_to_share:/share lphxl/binex:latest /bin/bash`
+`docker run --name binex --rm -itv /path/to/host_folder_to_share:/share lphxl/binex /bin/bash`
 
 You will need to specify the path to the directory on the host that you wish to mount to the `/share` directory in the container.
 
@@ -20,10 +20,13 @@ You will need to specify the path to the directory on the host that you wish to 
 
 `docker pull lphxl/binex:latest`
 
-Running via DockerHub is the most straightforward way to run `binex`, and I will always try to keep the image up-to-date.
-However, since DockerHub recently made GitHub integration a subscription-only feature, the image will not auto-update on new pushes to the repository.
-I may go with the Pro Plan at some point, but if you want to guarantee that you have the most upt-to-date image or you don't want to blindly trust my DockerHub image,
-feel free to read the `Dockerfile` and build it directly using the method below.
+Running via DockerHub is the most straightforward way to run `binex`.  The image is always kept up-to-date via GitHub actions linked directly to the `Dockerfile` in this repo.
+
+If you wish to use the GitHub Docker container registry [ghcr.io/phx/binex](https://ghcr.io/phx/binex), you can also pull and run from there:
+
+`docker run --name binex --rm -itv /path/to/host_folder_to_share:/share ghcr.io/phx/binex /bin/bash`
+
+If you don't trust pre-built container images, feel free to build directly from the `Dockerfile` itself using the instructions below.
 
 ## Build from Dockerfile
 
@@ -82,6 +85,8 @@ others tools:
 - nano
 - nc
 - ncat
+- perl
+- ruby
 - socat
 - telnet
 - vim

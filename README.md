@@ -6,6 +6,8 @@ It comes in most handy when using a computer without all of the necessary tools 
 
 It's also very handy on Windows, for obvious reasons.
 
+More than likely, you are going to want to run everything as root, so simply `sudo -s` after launching the container.  I have added the `ubuntu` user mainly for testing privilege escalation.
+
 Scroll down to the bottom for a [probably non-exhaustive] list of all installed scripts, tools, and utilities.  More will be added in time.
 
 **There are a few different ways to run `binex`:**

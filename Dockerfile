@@ -4,8 +4,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 COPY ./scripts/* /usr/local/bin/
 
-RUN apt-get -y update && apt-get install -y \
-ca-certificates \
+RUN useradd -m -d /home/ubuntu -s /bin/bash ubuntu && \
+    echo "root:$(echo $RANDOM$RANDOM$RANDOM$RANDOM$RANDOM | sha256sum | awk '{print $1}')" | chpasswd && \
+    echo "ubuntu:$(echo $RANDOM$RANDOM$RANDOM$RANDOM$RANDOM | sha256sum | awk '{print $1}')" | chpasswd && \
+    apt-get -y update && apt-get install -y \
+    sudo \
+    ca-certificates \
     tzdata \
     git \
     build-essential \
@@ -58,5 +62,10 @@ ca-certificates \
     git clone https://github.com/niklasb/libc-database && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    apt-get clean
+    apt-get clean && \
+    usermod -a -G sudo ubuntu && \
+    echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+USER ubuntu
+
+CMD ["/bin/bash"]
